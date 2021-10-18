@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv/config");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || "3000";
 
@@ -11,6 +12,9 @@ const postRoute = require("./routes/posts");
 mongoose.connect(process.env.MONGO_URL, () => {
   console.log("Connected to DB!");
 });
+
+// middlewares
+app.use(cors());
 app.use(bodyParser.json());
 
 //Routes Middleware
